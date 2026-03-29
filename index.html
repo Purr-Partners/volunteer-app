@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Volunteer Portal | Purr Partners</title>
+    
+    <!-- This makes it look like a real app on iPhones/Android -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="your-logo-icon.png">
+
+    <style>
+        :root {
+            --rescue-orange: #ff9f43;
+            --rescue-dark: #2d3436;
+            --bg-gray: #f0f2f5;
+            --white: #ffffff;
+        }
+
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background: var(--bg-gray); 
+            margin: 0; 
+            padding-bottom: 50px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- LOCK SCREEN STYLES --- */
+        #lock-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--rescue-orange);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: opacity 0.5s;
+        }
+
+        #lock-screen h2 { margin-bottom: 5px; }
+        #pin-input {
+            font-size: 2.5rem;
+            width: 180px;
+            text-align: center;
+            border-radius: 15px;
+            border: none;
+            padding: 15px;
+            margin: 20px 0;
+            letter-spacing: 5px;
+        }
+
+        .login-btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            background: var(--rescue-dark);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* --- APP CONTENT STYLES --- */
+        .header { 
+            background: var(--rescue-orange); 
+            color: white; 
+            padding: 30px 20px; 
+            text-align: center; 
+            border-bottom-left-radius: 30px; 
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title { 
+            padding: 25px 20px 10px; 
+            font-weight: bold; 
+            color: #636e72; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 1px;
+        }
+
+        .card-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            padding: 0 15px; 
+        }
+
+        .card { 
+            background: var(--white); 
+            padding: 25px 10px; 
+            border-radius: 20px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: var(--rescue-dark); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .card-label { font-weight: bold; font-size: 0.9rem; }
+
+        .list-item { 
+            background: var(--white); 
+            margin: 0 15px 12px; 
+            padding: 18px; 
+            border-radius: 15px; 
+            display: flex; 
+            align-items: center; 
+            text-decoration: none; 
+            color: var(--rescue-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .list-icon { 
+            font-size: 1.8rem; 
+            margin-right: 15px; 
+            background: #fff5eb;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .list-text strong { display: block; font-size: 1rem; }
+        .list-text small { color: #b2bec3; }
+
+        .footer-note {
+            text-align: center;
+            color: #b2bec3;
+            font-size: 0.8rem;
+            margin-top: 30px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. GATEKEEPER LOCK SCREEN -->
+    <div id="lock-screen">
+        <h2>Purr Partners</h2>
+        <p>Volunteer Access Only</p>
+        <input type="password" id="pin-input" inputmode="numeric" placeholder="••••">
+        <button class="login-btn" onclick="checkPin()">Enter Portal</button>
+    </div>
+
+    <!-- 2. MAIN APP CONTENT -->
+    <div class="header">
+        <h2 style="margin:0;">Purr Partners</h2>
+        <p style="margin:5px 0 0; opacity:0.9;">Volunteer Dashboard</p>
+    </div>
+
+    <div class="section-title">Common Tasks</div>
+    <div class="card-grid">
+        <!-- Replace URLs below with your ASM/Givebutter links -->
+        <a href="https://givebutter.com/YOUR_LINK" class="card">
+            <span class="card-icon">💰</span>
+            <span class="card-label">Givebutter</span>
+        </a>
+        <a href="https://sheltermanager.com/service?account=YOURCODE&method=online_form&formid=ADOPT" class="card">
+            <span class="card-icon">📋</span>
+            <span class="card-label">Adoptions</span>
+        </a>
+        <a href="https://sheltermanager.com/service?account=YOURCODE&method=online_form&formid=HOURS" class="card">
+            <span class="card-icon">⏰</span>
+            <span class="card-label">Log Hours</span>
+        </a>
+        <a href="https://sheltermanager.com/service?account=YOURCODE&method=online_form&formid=INTAKE" class="card">
+            <span class="card-icon">🐈</span>
+            <span class="card-label">Intake Form</span>
+        </a>
+    </div>
+
+    <div class="section-title">Resources & Training</div>
+    
+    <a href="YOUR_GOOGLE_DRIVE_LINK" class="list-item">
+        <span class="list-icon">📚</span>
+        <div class="list-text">
+            <strong>Resource Library</strong>
+            <small>Tutorials, PDFs, & Handouts</small>
+        </div>
+    </a>
+
+    <a href="YOUR_YOUTUBE_LINK" class="list-item">
+        <span class="list-icon">🎬</span>
+        <div class="list-text">
+            <strong>Video Guides</strong>
+            <small>Step-by-step training videos</small>
+        </div>
+    </a>
+
+    <div class="section-title">Community</div>
+    <a href="https://facebook.com/groups/yourgroup" class="list-item">
+        <span class="list-icon">👥</span>
+        <div class="list-text">
+            <strong>Volunteer FB Group</strong>
+            <small>Join the discussion</small>
+        </div>
+    </a>
+
+    <div class="footer-note">
+        Purr Partners Rescue v1.0<br>
+        Confidential Internal Use Only
+    </div>
+
+    <script>
+        const SECRET_PIN = "2026"; // Set your actual PIN here
+
+        // Check if phone remembers the user
+        if(localStorage.getItem('pp_auth') === 'true') {
+            document.getElementById('lock-screen').style.display = 'none';
+        }
+
+        function checkPin() {
+            const val = document.getElementById('pin-input').value;
+            if(val === SECRET_PIN) {
+                localStorage.setItem('pp_auth', 'true');
+                document.getElementById('lock-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('lock-screen').style.display = 'none';
+                }, 500);
+            } else {
+                alert("Incorrect PIN");
+                document.getElementById('pin-input').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
