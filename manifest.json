@@ -1,9 +1,11 @@
 {
-  "name": "Purr Partner Volunteers",
-  "short_name": "PP Vol",
-  "start_url": ".",
+  "name": "Purr Partner Volunteer Portal",
+  "short_name": "Purr Portal",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#ff9f43",
+  "theme_color":#ff9f43"
+  
   "description": "Your feline friend's best companion.",
   "icons": [
     {
