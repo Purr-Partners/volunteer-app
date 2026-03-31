@@ -92,11 +92,35 @@
     <!-- ADOPTION MENU -->
     <div id="adoption-menu" class="sub-menu">
         <h3>Adoption Tools</h3>
-        <a href="https://ame.petloyalty.co/petsmart/selection/store" class="link-item">Petsmart AME</a>
-        <a href="https://service.sheltermanager.com/asmservice?account=purr&method=online_form_html&formid=60" class="link-item">Report Completed Adoption</a>
-        <a href="https://www.facebook.com/groups/700051056813133/" class="link-item">Post pic on Facebook</a>
-    </div>
+    
+        <!-- Primary Tools -->
+        <a href="https://ame.petloyalty.co/petsmart/selection/store" class="link-item">Step 1: PetSmart AME</a>
+        <a href=""https://service.sheltermanager.com/asmservice?account=purr&method=online_form_html&formid=60" class="link-item">Step 2: Report Completed Adoption</a>
+        <a href="https://www.facebook.com/groups/700051056813133/" class="link-item">Step 3: Post pic on Facebook</a>
 
+        <div style="margin-top: 30px; border-top: 2px dashed #ccc; padding-top: 20px;">
+            <h4 style="color: #d63031; margin-bottom: 5px;">⚠️ Backup Payment Option</h4>
+            <p style="font-size: 0.85rem; color: #636e72; margin-bottom: 15px;">
+                Use this ONLY if the payment can't be processed with AME.
+            </p>
+
+            <div style="background:#f8f9fa; border:1px solid #0070ba; border-radius:15px; padding:15px; text-align:center;">
+                <strong style="color:#0070ba; display:block; margin-bottom:10px;">💳 Manual PayPal Payment</strong>
+            
+                <!-- Clickable Link -->
+                <a href="https://www.paypal.com/ncp/payment/AR82W2EVEYBWA" class="link-item" style="border-left-color:#0070ba; background: white;">
+                    Open PayPal Payment Page
+                </a>
+
+                <!-- QR Code -->
+                <p style="font-size:0.8rem; color:#666; margin:15px 0 10px;">Adopter can scan this to pay:</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.paypal.com/ncp/payment/AR82W2EVEYBWA" 
+                     alt="PayPal QR Code" 
+                     style="border:4px solid white; box-shadow:0 2px 8px rgba(0,0,0,0.1); width: 140px;">
+            </div>
+        </div>
+    </div>
+    
     <!-- CONTACT MENU -->
     <div id="contact-menu" class="sub-menu">
         <h3>Who to Contact</h3>
@@ -113,7 +137,39 @@
             <a href="mailto:fosters@purrpartners.org">Email Foster Support</a>
         </div>
     </div>
+    <!-- CONTACT MENU -->
+    <div id="contact-menu" class="sub-menu">
+        <h3>Who to Contact</h3>
+    
+        <div class="contact-card">
+            <strong>Bios & Web Images</strong>
+            <a href="mailto:purrpublicity@gmail.com" class="link-item" style="margin-bottom:8px;">
+            📧 Click to Send Email
+            </a>
+            <div style="background: #eee; padding: 8px; border-radius: 5px; font-family: monospace; font-size: 0.9rem; text-align: center; color: #333;">
+                purrpublicity@gmail.com
+            </div>
+            <small style="display:block; margin-top:5px; color:#666; font-style:italic;">
+                (Copy/paste address if the button doesn't open your mail app)
+            </small>
+        </div>
 
+        <div class="contact-card">
+            <strong>Emergency Medical</strong>
+            <a href="tel:9195551234" class="link-item">📞 Call or Text (919) 555-1234</a>
+        </div>
+
+        <div class="contact-card">
+            <strong>Foster Support Lead</strong>
+            <a href="mailto:fosters@purrpartners.org" class="link-item" style="margin-bottom:8px;">
+                📧 Click to Send Email
+            </a>
+            <div style="background: #eee; padding: 8px; border-radius: 5px; font-family: monospace; font-size: 0.9rem; text-align: center; color: #333;">
+                fosters@purrpartners.org
+            </div>
+        </div>
+    </div>
+    
     <!-- ADMIN MENU -->
     <div id="admin-menu" class="sub-menu">
         <h3>Admin Tasks</h3>
