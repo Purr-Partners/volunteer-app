@@ -235,54 +235,6 @@
         document.getElementById('expect-adopt').style.display = val === 'adopt' ? 'block' : 'none';
     }
  
-  // Load saved leads when the app starts
-  window.onload = function() {
-      loadTeamLeads();
-  };
-
-  function toggleTeamEdit() {
-    const display = document.getElementById('team-lead-display');
-    const edit = document.getElementById('team-lead-edit');
-    edit.style.display = 'block';
-    display.style.display = 'none';
-}
-
-function saveTeamLeads() {
-    const teamData = {
-        l1Name: document.getElementById('l1-name-in').value,
-        l1Phone: document.getElementById('l1-phone-in').value,
-        l2Name: document.getElementById('l2-name-in').value,
-        l2Phone: document.getElementById('l2-phone-in').value
-    };
-    
-    // Save to phone memory
-    localStorage.setItem('purrTeam', JSON.stringify(teamData));
-    loadTeamLeads();
-    
-    document.getElementById('team-lead-display').style.display = 'block';
-    document.getElementById('team-lead-edit').style.display = 'none';
-}
-
-function loadTeamLeads() {
-    const savedData = localStorage.getItem('purrTeam');
-    if (savedData) {
-        const data = JSON.parse(savedData);
-        
-        // Update the display text
-        document.getElementById('l1-name-txt').innerText = data.l1Name || '---';
-        document.getElementById('l1-phone-txt').innerText = data.l1Phone || 'Add Number';
-        document.getElementById('l1-phone-lnk').href = "tel:" + data.l1Phone;
-        
-        document.getElementById('l2-name-txt').innerText = data.l2Name || '---';
-        document.getElementById('l2-phone-txt').innerText = data.l2Phone || 'Add Number';
-        document.getElementById('l2-phone-lnk').href = "tel:" + data.l2Phone;
-
-        // Fill the inputs in case they edit again
-        document.getElementById('l1-name-in').value = data.l1Name;
-        document.getElementById('l1-phone-in').value = data.l1Phone;
-        document.getElementById('l2-name-in').value = data.l2Name;
-        document.getElementById('l2-phone-in').value = data.l2Phone;
-    }
 }
 </script>
 </body>
