@@ -1,252 +1,179 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purr Partners Volunteer Portal</title>
-   
-    <!-- The App Icon for iPhone/Android -->
-    <link rel="apple-touch-icon" href="https://github.com/Purr-Partners/volunteer-app/blob/main/purr-partner-logo.png">
-    <link rel="icon" type="image/png" href="https://github.com/Purr-Partners/volunteer-app/blob/main/purr-partner-logo.png">
-
-    <!-- Tells the phone to treat this as a standalone app -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Purr Partners Volunteer Hub</title>
+    
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Purr Portal">
-
-    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <style>
-        :root { --rescue-blue: #0056b3; --dark-gray: #2d3436; --light-gray: #f4f7f6; }
-        body { font-family: -apple-system, sans-serif; background: var(--light-gray); margin: 0; padding-bottom: 60px; }
+        :root { 
+            --pp-blue: #0056b3; 
+            --pp-dark-blue: #004494;
+            --pp-light-blue: #e7f3ff;
+            --pp-gray: #f8f9fa;
+            --pp-dark: #2d3436;
+            --success: #28a745;
+            --warning: #d63031;
+        }
+
+        body { font-family: -apple-system, sans-serif; background: var(--pp-gray); margin: 0; padding-bottom: 40px; color: var(--pp-dark); }
         
-        /* Header & Navigation */
-        .header { background: var(--rescue-blue); color: white; padding: 25px 15px; text-align: center; border-bottom: 4px solid #e7f3ff; }
-        .back-bar { display: none; background: var(--dark-gray); color: white; padding: 15px; text-align: center; cursor: pointer; font-weight: bold; }
+        /* Login Screen */
+        #login-screen { position: fixed; inset: 0; background: var(--pp-blue); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1000; color: white; }
+        .pin-input { width: 150px; padding: 15px; font-size: 1.5rem; text-align: center; border-radius: 10px; border: none; margin-top: 20px; letter-spacing: 5px; }
 
-        /* Main Menu Grid */
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; }
-        .menu-card { background: white; padding: 35px 10px; border-radius: 15px; text-align: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.08); font-weight: bold; font-size: 1.1rem; border: 1px solid #eee; }
-        .menu-card span { display: block; font-size: 2.5rem; margin-bottom: 10px; }
+        /* Navigation */
+        .header { background: var(--pp-blue); color: white; padding: 25px 15px; text-align: center; border-bottom: 4px solid var(--pp-dark-blue); }
+        .back-bar { display: none; background: var(--pp-dark); color: white; padding: 15px; text-align: center; cursor: pointer; font-weight: bold; }
 
-        /* Sub-Menu Levels */
-        .sub-menu { display: none; padding: 20px; }
-        .sub-menu h3 { color: var(--rescue-blue); border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-top: 0; }
+        /* Grid System */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 15px; }
+        .menu-card { background: white; padding: 25px 10px; border-radius: 15px; text-align: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-weight: bold; border: 1px solid #eee; transition: transform 0.1s; }
+        .menu-card:active { transform: scale(0.95); }
+        .menu-card span { display: block; font-size: 2.2rem; margin-bottom: 8px; }
+
+        /* Sub-Menu Content */
+        .sub-menu { display: none; padding: 15px; }
+        .link-item { background: white; margin-bottom: 10px; padding: 15px; border-radius: 12px; display: block; text-decoration: none; color: #333; border-left: 5px solid var(--pp-blue); font-weight: 500; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-title { color: var(--pp-blue); border-bottom: 2px solid var(--pp-light-blue); padding-bottom: 5px; margin: 20px 0 15px; }
         
-        /* Buttons inside Sub-Menus */
-        .link-item { background: white; margin-bottom: 12px; padding: 18px; border-radius: 12px; display: block; text-decoration: none; color: #333; border-left: 6px solid var(--rescue-blue); font-weight: 500; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .link-item:active { background: #fff5eb; }
-
-        /* Contact List Styling */
-        .contact-card { background: white; padding: 15px; border-radius: 12px; margin-bottom: 10px; border-left: 6px solid #2d3436; }
-        .contact-card strong { display: block; font-size: 1.1rem; }
-        .contact-card a { color: var(--rescue-blue); text-decoration: none; font-weight: bold; }
-
-        /* Lock Screen */
-        #lock-screen { position:fixed; top:0; left:0; width:100%; height:100%; background:var(--rescue-blue); z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:white; }
-        #pin-input { font-size: 2rem; width: 140px; text-align: center; border: none; border-radius: 10px; padding: 10px; margin: 20px 0; }
+        /* Contact Cards */
+        .contact-card { background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #eee; }
+        .contact-card strong { display: block; margin-bottom: 5px; color: var(--pp-blue); }
     </style>
 </head>
 <body>
 
-    <!-- 1. LOCK SCREEN -->
-    <div id="lock-screen">
-        <h2 style="margin-bottom:0;">Purr Partners</h2>
-        <p>Volunteer Portal Login</p>
-        <input type="password" id="pin-input" placeholder="PIN" inputmode="numeric">
-        <button onclick="checkPin()" style="padding:15px 40px; border-radius:10px; border:none; background:var(--dark-gray); color:white; font-weight:bold; font-size:1.1rem;">ENTER</button>
-    </div>
+<div id="login-screen">
+    <img src="logo.png" style="width: 100px; margin-bottom: 20px;">
+    <h2>Volunteer Access</h2>
+    <input type="password" id="pin" class="pin-input" placeholder="PIN" oninput="checkPin()">
+</div>
 
-    <!-- 2. NAVIGATION BARS -->
-    <div class="header"><h1 style="margin:0;">Purr Partners</h1></div>
-    <div id="back-bar" class="back-bar" onclick="showMain()">← BACK TO MENU</div>
+<div id="app-content" style="display:none;">
+    <div class="header"><h1>Purr Partners</h1></div>
+    <div id="back-bar" class="back-bar" onclick="showMainMenu()">← Back to Menu</div>
 
-    <!-- 3. MAIN MENU (Level 1) -->
     <div id="main-menu" class="grid">
-        <div class="menu-card" onclick="showSub('signup-menu')"><span>📅</span>Volunteer Signups</div>
-        <div class="menu-card" onclick="showSub('foster-menu')"><span>🏠</span>Fostering</div>
-        <div class="menu-card" onclick="showSub('adoption-menu')"><span>📝</span>Adoptions</div>
-        <div class="menu-card" onclick="showSub('contact-menu')"><span>📞</span>Who to Contact</div>
-        <div class="menu-card" onclick="showSub('admin-menu')"><span>⚙️</span>Admin</div>
-        <div class="menu-card" onclick="showSub('resource-menu')"><span>📚</span>Resources</div>
-        <div class="menu-card" onclick="showSub('medical-menu')><span>🌡️🐈</span>Medical</div>
+        <div class="menu-card" onclick="showMenu('signup-menu')"><span>📝</span>Signups</div>
+        <div class="menu-card" onclick="showMenu('foster-menu')"><span>🐱</span>Fostering</div>
+        <div class="menu-card" onclick="showMenu('adoption-menu')"><span>🏠</span>Adoptions</div>
+        <div class="menu-card" onclick="showMenu('contact-menu')"><span>📱</span>Contacts</div>
+        <div class="menu-card" onclick="showMenu('admin-menu')"><span>⚙️</span>Admin</div>
+        <div class="menu-card" onclick="showMenu('resource-menu')"><span>📚</span>Resources</div>
     </div>
 
-    <!-- 4. SUB-MENUS (Level 2) -->
-    </body>
-    <!-- SIGNUP MENU -->
     <div id="signup-menu" class="sub-menu">
-        <h3>SignUp! Signup Genius Links</h3>
-        <a href="https://www.signupgenius.com/go/70A0A4EAEAE2AA31-57411793-purr#/" class="link-item">Petsmart Adoption Events</a>
-        <a href="https://www.signupgenius.com/go/70A0A4EAEAE2AA31-57411601-purr#/" class="link-item">Help at the Center</a>
+        <h3 class="section-title">Open Signups</h3>
+        <a href="GENIUS_ADOPT_URL" class="link-item">🎪 Adoption Events Signup</a>
+        <a href="GENIUS_CENTER_URL" class="link-item">🧹 Center Cleaning/Care Signup</a>
+
+        <h3 class="section-title">What to Expect</h3>
+        <select onchange="toggleExpect(this.value)" style="width:100%; padding:12px; border-radius:10px;">
+            <option value="">Select Event Type...</option>
+            <option value="center">At the Center (Sick Kitty Care)</option>
+            <option value="adopt">At an Adoptathon</option>
+        </select>
+
+        <div id="expect-center" style="display:none; margin-top:15px; background:#fff; padding:15px; border-radius:12px;">
+            <p><strong>Sick Kitty Care:</strong> You are their healing hero! Tasks involve cleaning cages/litter with specialized disinfectant, swapping blankets, and logging appetite/health notes. 🧼🐈</p>
+        </div>
+        <div id="expect-adopt" style="display:none; margin-top:15px; background:#fff; padding:15px; border-radius:12px;">
+            <p><strong>Adoptathon Events:</strong> Fast-paced and fun! You'll talk to public, keep cages tidy, and help process adoptions. 🏠✨</p>
+        </div>
     </div>
 
-    <!-- FOSTER MENU --> 
     <div id="foster-menu" class="sub-menu">
-        <h3>Forms</h3>
-        <a href="https://www.purrpartners.org/wp-content/uploads/2021/09/Medical_Protocol_20210929.pdf" class="link-item">Medical Protocaol</a>
-        <a href="ASM_MED_REQUEST" class="link-item">CareTaker Form</a>
-        <a href="ASM_VET_REQUEST" class="link-item">Foster To Adopt Form</a>
-        <a href="ASM_RETURN_REQUEST" class="link-item">Foster Returned</a>    
-        <a href="ASM_PUBLISH_PICS" class="link-item">Publicize your cat</a>    
-        <a href="https://www.purrpartners.org/wp-content/uploads/2026/02/Surrender-Form-2.0.pdf" class="link-item">Surrender Form</a>
-    </div>
-    
-    <!-- ADOPTION MENU -->
-    <div id="adoption-menu" class="sub-menu" style="text-align: left; padding: 10px 20px;">
-    
-    <div style="background: #2d3436; border-radius: 12px; padding: 15px; margin-bottom: 25px; text-align: center;">
-        <span style="color: white; font-weight: bold; display: block; margin-bottom: 8px; font-size: 0.95rem;">Need a refresher?</span>
-        <a href="https://www.purrpartners.org/wp-content/uploads/2023/07/Left1__Adoption-Paperwork-checklist_07202023.docx" class="link-item" style="background: #0056b3; color: white; border: none; text-align: center; border-left: none; margin: 0 auto; width: 85%;">
-            📋 Adoption "How-To" Guide
-        </a>
+        <h3 class="section-title">Guidelines & SOPs</h3>
+        <a href="SOP_RETURNS" class="link-item">🔄 Cat Returns Process</a>
+        <a href="SOP_SICK" class="link-item">🌡️ Sick Kitty Protocols</a>
+        <a href="SOP_PUBLICITY" class="link-item">📸 Publicity & Bio Tips</a>
+
+        <h3 class="section-title">Forms & Requests</h3>
+        <a href="FORM_FTA" class="link-item">Foster to Adopt Form</a>
+        <a href="FORM_ELDER" class="link-item">Elder Care Agreement</a>
+        <a href="FORM_SURRENDER" class="link-item">Surrender Form</a>
     </div>
 
-    <div style="margin-bottom: 25px;">
-        <strong style="color: #2d3436; font-size: 1.1rem;">1. PetSmart Loyalty (AME)</strong>
-        <p style="font-size: 0.9rem; color: #666; margin: 5px 0 10px;">
-            ✨ <strong>BONUS:</strong> Don't forget to hand over the <strong>Coupon Book</strong>! <strong>VIPP status updated</strong>! automatically if they PetLoyalty award e-mail in AME.
-        </p>
-        <a href="https://ame.petloyalty.co/petsmart/selection/store" class="link-item" style="border-left-color: #e4002b; padding: 15px;">
-            🐾 Open PetSmart AME Portal
-        </a>
-    </div>
-
-    <div style="margin-bottom: 25px;">
-        <strong style="color: #2d3436; font-size: 1.1rem;">2. The "Gotcha" Photo</strong>
-        <p style="font-size: 0.9rem; color: #666; margin: 5px 0 10px;">
-            📸 Snap a quick pic of the new family (if they're game) and share the joy!
-        </p>
-        <a href="https://www.facebook.com/groups/700051056813133/" class="link-item" style="border-left-color: #3b5998; padding: 15px;">
-            📸 Post to our Volunteer Facebook Group
-        </a>
-    </div>
-
-    <div style="margin-bottom: 30px;">
-        <strong style="color: #2d3436; font-size: 1.1rem;">3. Report Completed Adoption</strong>
-        <p style="font-size: 0.9rem; color: #666; margin: 5px 0 10px;">
-            🏁 Time to make it official in the system. 🎉 Thank you for being their hero today! 🏠 ✨ 🐈
-        </p>
-        <a href="https://service.sheltermanager.com/asmservice?account=purr&method=online_form_html&formid=60" class="link-item" style="border-left-color: #2ecc71; padding: 15px;">
-            🏁 Report Adoption in ASM
-        </a>
-    </div>
-
-    <div style="background: #fdf2e9; border: 2px dashed #ff9f43; border-radius: 15px; padding: 15px; text-align: center;">
-        <strong style="color: #d35400; font-size: 0.9rem; text-transform: uppercase;">⚠️ Backup Payment Only</strong>
-        <p style="font-size: 0.85rem; color: #666; margin: 8px 0 12px;">
-            Only use this PayPal link if the <strong>AME Loyalty payment fails</strong> to process.
-        </p>
+    <div id="adoption-menu" class="sub-menu">
+        <div style="background: #2d3436; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;">
+            <a href="CHECKLIST_URL" style="color:white; text-decoration:none; font-weight:bold;">📋 Open "How-To" Guide</a>
+        </div>
+        <div class="link-item" style="border-left-color:#e4002b;">🐾 1. Open PetSmart AME Portal<br><small>Give coupon book! Mention VIIP Upgrade!</small></div>
+        <a href="FB_LINK" class="link-item" style="border-left-color:#3b5998;">📸 2. Post "Gotcha" Photo to Facebook</a>
         
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://www.paypal.com/ncp/payment/AR82W2EVEYBWA" 
-             alt="PayPal QR" 
-             style="display: block; margin: 0 auto 12px; width: 100px; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-        
-        <a href="https://www.paypal.com/ncp/payment/AR82W2EVEYBWA" style="font-size: 0.8rem; color: #0070ba; text-decoration: none; font-weight: bold;">
-            🔗 Open Manual PayPal Link
-        </a>
+        <div style="background: var(--pp-light-blue); padding: 15px; border-radius:15px; border:2px solid var(--pp-blue); margin-top:20px;">
+            <strong style="color:var(--pp-blue);">🎉 3. Finalize Adoption!</strong>
+            <p style="font-size:0.8rem; margin:5px 0;">YEH! Congrats Hero!</p>
+            <a href="ASM_FINAL" class="link-item" style="border-left-color:var(--success);">🏁 Report in ASM</a>
+        </div>
+
+        <div style="margin-top:20px; text-align:center; opacity:0.7;">
+            <small>⚠️ Backup Only: <a href="PAYPAL_URL">PayPal Link</a></small>
+        </div>
     </div>
 
-    </div>
-    
-    <!-- CONTACT MENU -->
     <div id="contact-menu" class="sub-menu">
-        <h3>Who to Contact</h3>
         <div class="contact-card">
-            <strong>Bios & Web Pics</strong>
-            <a href="mailto:PurrPublicity@gmail.com">Email Coordinator</a>
+            <strong>Adoption Coordinator (Web/Bios)</strong>
+            <a href="mailto:bios@purrpartners.org">📧 bios@purrpartners.org</a>
         </div>
         <div class="contact-card">
-            <strong>Medical Director</strong>
-            <a href="tel:5551234567">Call/Text (919) 555-1234</a>
+            <strong>Medical Emergency</strong>
+            <a href="tel:9195551234" style="color:var(--warning); font-weight:bold;">📞 (919) 555-1234</a>
         </div>
         <div class="contact-card">
-            <strong>Foster Lead</strong>
-            <a href="mailto:fosters@purrpartners.org">Email Foster Support</a>
-        </div>
-    </div>
-    <!-- CONTACT MENU -->
-    <div id="contact-menu" class="sub-menu">
-        <h3>Who to Contact</h3>
-    
-        <div class="contact-card">
-            <strong>Bios & Web Images</strong>
-            <a href="mailto:purrpublicity@gmail.com" class="link-item" style="margin-bottom:8px;">
-            📧 Click to Send Email
-            </a>
-            <div style="background: #eee; padding: 8px; border-radius: 5px; font-family: monospace; font-size: 0.9rem; text-align: center; color: #333;">
-                purrpublicity@gmail.com
-            </div>
-            <small style="display:block; margin-top:5px; color:#666; font-style:italic;">
-                (Copy/paste address if the button doesn't open your mail app)
-            </small>
-        </div>
-
-        <div class="contact-card">
-            <strong>Medical Emergency - Text Lawanna</strong>
-            <a href="tel:9195551234" class="link-item">📞 Call or Text (919) 555-1234</a>
-        </div>
-
-        <div class="contact-card">
-            <strong>Foster Support Lead</strong>
-            <a href="mailto:fosters@purrpartners.org" class="link-item" style="margin-bottom:8px;">
-                📧 Click to Send Email
-            </a>
-            <div style="background: #eee; padding: 8px; border-radius: 5px; font-family: monospace; font-size: 0.9rem; text-align: center; color: #333;">
-                fosters@purrpartners.org
-            </div>
+            <strong>Facebook/Social</strong>
+            <span>Admin: Sarah Jane</span><br>
+            <a href="mailto:social@purrpartners.org">📧 social@purrpartners.org</a>
         </div>
     </div>
-    
-    <!-- ADMIN MENU -->
+
     <div id="admin-menu" class="sub-menu">
-        <h3>Admin Tasks</h3>
-        <a href="ASM_LOGIN" class="link-item">ASM Internal Login</a>
-        <a href="GIVEBUTTER_DASHBOARD" class="link-item">Givebutter Dashboard</a>
-        <a href="ASM_NEW_CAT" class="link-item">New Intake Entry</a>
+        <h3 class="section-title">ASM Management</h3>
+        <a href="ASM_MOVE" class="link-item">🏠 Manage/Move Fosters</a>
+        <a href="ASM_RETURN" class="link-item">🔄 Process Returned Cat</a>
+        <a href="ASM_MEDS" class="link-item">💊 Update Medical Records</a>
     </div>
 
-    <!-- RESOURCES MENU -->
     <div id="resource-menu" class="sub-menu">
-        <h3>Volunteer Library</h3>
-        <a href="DRIVE_LINK_PDFS" class="link-item">Training Handouts (PDF)</a>
-        <a href="DRIVE_LINK_VIDEOS" class="link-item">How-To Video Tutorials</a>
-        <a href="RESCUE_BYLAWS_URL" class="link-item">Rescue Bylaws & Policies</a>
+        <h3 class="section-title">Tutorials</h3>
+        <a href="GUIDE_AME" class="link-item">How-To: PetSmart AME</a>
+        <a href="GUIDE_ASM" class="link-item">How-To: ASM System</a>
+        <a href="GUIDE_SOP" class="link-item">General Volunteer SOP</a>
     </div>
+</div>
 
-    <script>
-        // PIN LOGIN LOGIC
-        function checkPin() {
-            const pin = document.getElementById('pin-input').value;
-            if(pin === "2026") { // Change this to your desired PIN
-                document.getElementById('lock-screen').style.display = 'none';
-                localStorage.setItem('pp_auth', 'true');
-            } else {
-                alert("Incorrect PIN");
-                document.getElementById('pin-input').value = "";
-            }
+<script>
+    function checkPin() {
+        if(document.getElementById('pin').value === '2026') { // Change '2026' to your passcode
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app-content').style.display = 'block';
         }
+    }
 
-        // Auto-login if previously authorized
-        if(localStorage.getItem('pp_auth') === 'true') {
-            document.getElementById('lock-screen').style.display = 'none';
-        }
+    function showMenu(menuId) {
+        document.getElementById('main-menu').style.display = 'none';
+        document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
+        document.getElementById(menuId).style.display = 'block';
+        document.getElementById('back-bar').style.display = 'block';
+    }
 
-        // NAVIGATION LOGIC
-        function showSub(menuId) {
-            document.getElementById('main-menu').style.display = 'none';
-            document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
-            document.getElementById(menuId).style.display = 'block';
-            document.getElementById('back-bar').style.display = 'block';
-            window.scrollTo(0,0);
-        }
+    function showMainMenu() {
+        document.getElementById('main-menu').style.display = 'grid';
+        document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
+        document.getElementById('back-bar').style.display = 'none';
+    }
 
-        function showMain() {
-            document.getElementById('main-menu').style.display = 'grid';
-            document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
-            document.getElementById('back-bar').style.display = 'none';
-            window.scrollTo(0,0);
-        }
-    </script>
+    function toggleExpect(val) {
+        document.getElementById('expect-center').style.display = val === 'center' ? 'block' : 'none';
+        document.getElementById('expect-adopt').style.display = val === 'adopt' ? 'block' : 'none';
+    }
+</script>
 </body>
-</html>
+</html> 
