@@ -9,12 +9,12 @@
   "description": "Your feline friend's best companion.",
   "icons": [
     {
-      "src": "https://github.com/Purr-Partners/volunteer-app/blob/main/purr-partner-logo-192.png",
+      "src": "https://www.purrpartners.org/wp-content/uploads/2014/11/purr.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://github.com/Purr-Partners/volunteer-app/blob/main/purr-partner-logo-512.png",
+      "src": "https://www.purrpartners.org/wp-content/uploads/2014/11/purr.png",
       "sizes": "512x512",
       "type": "image/png"
     }
