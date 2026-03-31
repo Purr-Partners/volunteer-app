@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Purr Partners Volunteer Hub</title>
     
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="https://www.purrpartners.org/wp-content/uploads/2014/11/purr.png">
+    <link rel="icon" type="image/png" href="https://www.purrpartners.org/wp-content/uploads/2014/11/purr.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -50,9 +50,10 @@
 <body>
 
 <div id="login-screen">
-    <img src="logo.png" style="width: 100px; margin-bottom: 20px;">
+    <img src="https://www.purrpartners.org/wp-content/uploads/2014/11/purr.png" style="width: 100px; margin-bottom: 20px;">
     <h2>Volunteer Access</h2>
-    <input type="password" id="pin" class="pin-input" placeholder="PIN" oninput="checkPin()">
+    <input type="password" id="pin-input" placeholder="PIN" inputmode="numeric">
+        <button onclick="checkPin()" style="padding:15px 40px; border-radius:10px; border:none; background:var(--dark-gray); color:white; font-weight:bold; font-size:1.1rem;">ENTER</button>
 </div>
 
 <div id="app-content" style="display:none;">
