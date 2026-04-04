@@ -47,7 +47,7 @@
         #pin-input { font-size: 2rem; width: 140px; text-align: center; border: none; border-radius: 10px; padding: 10px; margin: 20px 0; }
     </style>
 </head>
-<body>
+
 
     <!-- 1. LOCK SCREEN -->
     <div id="lock-screen">
@@ -82,12 +82,12 @@
 </body>
     <!-- FOSTER MENU --> 
     <div id="foster-menu" class="sub-menu">
-        <div class="menu-card" onclick="showMenu('medical-menu')"><span style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">🌡️🐈</span>
+        <div class="menu-card" onclick="showSub('medical-menu')"><span style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">🌡️🐈</span>
         Medical & Sick Care </div>
         <h3>Forms</h3>
         <a href="https://www.purrpartners.org/wp-content/uploads/2021/09/Medical_Protocol_20210929.pdf" class="link-item">Medical Protocaol</a>
-        <a href="ASM_MED_REQUEST" class="link-item">CareTaker Form</a>
-        <a href="ASM_VET_REQUEST" class="link-item">Foster To Adopt Form</a>
+        <a href="https://drive.google.com/file/d/1mbtudUTP555hBVC6xaJcsN1uvnPHm35c/view?usp=drive_link" class="link-item">CareTaker Form</a>
+        <a href="https://drive.google.com/file/d/1k9dcuex0jrexKDdXzdmNpztZ7eFaANL-/view?usp=drive_link" class="link-item">Foster To Adopt Form</a>
         <a href="ASM_RETURN_REQUEST" class="link-item">Foster Returned</a>    
         <a href="ASM_PUBLISH_PICS" class="link-item">Publicize your cat</a>    
         <a href="https://www.purrpartners.org/wp-content/uploads/2026/02/Surrender-Form-2.0.pdf" class="link-item">Surrender Form</a>
@@ -95,7 +95,7 @@
 
     <div id="medical-menu" class="sub-menu" style="text-align: left; padding: 10px 20px;">
     
-    <h3 style="text-align: center; margin-bottom: 25px; color: var(--pp-blue);">Sick Kitty Care & Cleaning</h3>
+    <h3 style="text-align: center; margin-bottom: 25px; color: var(--rescue-blue);">Sick Kitty Care & Cleaning</h3>
 
     <div style="margin-bottom: 25px; border-left: 4px solid #95a5a6; padding-left: 15px;">
         <strong style="color: #2d3436; font-size: 1.1rem;">🧼 Sanitize & Refresh</strong>
@@ -278,20 +278,32 @@
         }
 
         // NAVIGATION LOGIC
-        function showSub(menuId) {
-            document.getElementById('main-menu').style.display = 'none';
-            document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
-            document.getElementById(menuId).style.display = 'block';
-            document.getElementById('back-bar').style.display = 'block';
-            window.scrollTo(0,0);
-        }
+         let currentParent = 'main-menu';
 
-        function showMain() {
-            document.getElementById('main-menu').style.display = 'grid';
-            document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
-            document.getElementById('back-bar').style.display = 'none';
-            window.scrollTo(0,0);
-        }
+function showSub(menuId, parentId = 'main-menu') {
+    // Hide everything
+    document.getElementById('main-menu').style.display = 'none';
+    document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
+    
+    // Show the new menu
+    document.getElementById(menuId).style.display = 'block';
+    document.getElementById('back-bar').style.display = 'block';
+    
+    // Remember where we came from
+    currentParent = parentId;
+    window.scrollTo(0,0);
+}
+
+function showMain() {
+    if (document.getElementById('medical-menu').style.display === 'block') {
+        showSub('foster-menu'); // Go back to Foster instead of Home
+    } else {
+        document.getElementById('main-menu').style.display = 'grid';
+        document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
+        document.getElementById('back-bar').style.display = 'none';
+    }
+    window.scrollTo(0,0);
+}
     </script>
 </body>
 </html>
