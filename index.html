@@ -47,7 +47,7 @@
         #pin-input { font-size: 2rem; width: 140px; text-align: center; border: none; border-radius: 10px; padding: 10px; margin: 20px 0; }
     </style>
 </head>
-
+<body>
 
     <!-- 1. LOCK SCREEN -->
     <div id="lock-screen">
@@ -79,13 +79,21 @@
         <a href="https://www.signupgenius.com/go/70A0A4EAEAE2AA31-57411793-purr#/" class="link-item">Petsmart Adoption Events</a>
         <a href="https://www.signupgenius.com/go/70A0A4EAEAE2AA31-57411601-purr#/" class="link-item">Help at the Center</a>
     </div>
-</body>
+
     <!-- FOSTER MENU --> 
     <div id="foster-menu" class="sub-menu">
-        <div class="menu-card" onclick="showSub('medical-menu')"><span style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">🌡️🐈</span>
-        Medical & Sick Care </div>
-		<div class="link-item" onclick="showSub('return-menu')">🔄 Process a Return</div>
-        <h3>Forms</h3>
+	<h3>Foster Actions</h3>
+
+	<div style="margin-bottom: 20px;">
+		<div class="link-item" onclick="showSub('medical-menu')" style="border-left-color: #ff7675; cursor: pointer;">
+     			🌡️🐈 Sick Kitty Care & Medical
+		</div>
+		<div class="link-item" onclick="showSub('return-menu')" style="border-left-color: var(--rescue-blue); cursor: pointer;">
+			🔄 Process a Return
+		</div>
+	</div>
+
+        <h3>Forms & References</h3>
         <a href="https://www.purrpartners.org/wp-content/uploads/2021/09/Medical_Protocol_20210929.pdf" class="link-item">Medical Protocol</a>
         <a href="https://drive.google.com/file/d/1mbtudUTP555hBVC6xaJcsN1uvnPHm35c/view?usp=drive_link" class="link-item">Family Agreement for Care</a>
         <a href="https://drive.google.com/file/d/1k9dcuex0jrexKDdXzdmNpztZ7eFaANL-/view?usp=drive_link" class="link-item">Foster To Adopt Form</a>    
@@ -123,13 +131,14 @@
         </a>
     </div>
 
+
     <div style="background: #fff5f5; border: 2px solid #d63031; border-radius: 15px; padding: 15px; text-align: center;">
         <strong style="color: #d63031; font-size: 0.95rem;">🚨 Medical Emergency?</strong>
         <p style="font-size: 0.85rem; color: #444; margin: 8px 0;">
-            If a kitty is in distress, contact the Medical Director immediately.
+            If a kitty is in distress, contact your team lead and text Lawanna immediately.
         </p>
-        <a href="tel:9195551234" style="display: block; background: #d63031; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 10px;">
-            📞 CALL MEDICAL DIRECTOR
+        <a href="sms:9199068243" style="display: block; background: #d63031; color: white; text-decoration: none; padding: 12px; border-radius: 10px; font-weight: bold; margin-top: 10px;">
+            📞 TEXT Lawanna Johnson
         </a>
     </div>
 </div>
@@ -159,18 +168,18 @@
 
 		<div class="contact-card" style="border-left-color: #2ecc71;">
             <strong>2. Notify Team Lead</strong>
-            <p style="font-size: 0.9rem; margin: 5px 0;"> <strong>Notify your Team Lead</strong> immediately as they may be able to discuss with the adopter and resolve concerns.</p>
+            <p style="font-size: 0.9rem; margin: 5px 0;"> Notify your Team Lead immediately as they may be able to discuss with the adopter and resolve concerns.</p>
         </div>
 		
         <div class="contact-card" style="border-left-color: #2ecc71;">
             <strong>3. Resolutions & Notifications</strong>
-            <p style="font-size: 0.9rem; margin-bottom: 12px;">Ask if they want a <strong>Refund</strong></p>
+            <p style="font-size: 0.9rem; margin-bottom: 12px;">If cat must be returned, ask if they want a <strong>Refund</strong></p>
             
             <a href="mailto:barbara@purrpartners.org?subject=Refund%20Request%20-%202%20Week%20Window" class="link-item" style="border-left-color: #f1c40f; margin-bottom: 8px;">
                 💰 Email Barbara for Refund
             </a>
 			<p style="font-size: 0.9rem; margin-bottom: 12px;"><strong>OR</strong></p>
-				<p style="font-size: 0.9rem; margin-bottom: 12px;"> a <strong>Different Cat</strong>, then tap below to notify the right person:</p>
+				<p style="font-size: 0.9rem; margin-bottom: 12px;"> <strong>Different Cat</strong></p>
             <a href="mailto:judyLcooper@hotmail.com?subject=Return%20Swap%20-%20Update%20Approved%20List" class="link-item" style="border-left-color: #3498db;">
                 🐈 Email Judy to Swap/Re-approve
             </a>
@@ -202,13 +211,24 @@
     <!-- ADOPTION MENU -->
     <div id="adoption-menu" class="sub-menu" style="text-align: left; padding: 10px 20px;">
     
+    <! -- References -- >
     <div style="background: #2d3436; border-radius: 12px; padding: 15px; margin-bottom: 25px; text-align: center;">
-        <span style="color: white; font-weight: bold; display: block; margin-bottom: 8px; font-size: 0.95rem;">Need a refresher?</span>
-        <a href="https://drive.google.com/file/d/1NLKSdrn2PmbQJXrM5GYdYXJ-B1_aGtlO/view?usp=drive_link" class="link-item" style="background: #0056b3; color: white; border: none; text-align: center; border-left: none; margin: 0 auto; width: 85%;">
-            📋 Adoption "How-To" Guide
+    <span style="color: white; font-weight: bold; display: block; margin-bottom: 12px; font-size: 0.95rem;">Need a refresher?</span>
+    
+    <div style="display: flex; gap: 10px; justify-content: center; padding: 0 5px;">
+        <a href="https://drive.google.com/file/d/1NLKSdrn2PmbQJXrM5GYdYXJ-B1_aGtlO/view?usp=drive_link" 
+           class="link-item" 
+           style="background: #0056b3; color: white; border: none; text-align: center; border-left: none; margin: 0; flex: 1; font-size: 0.85rem; padding: 12px 5px;">
+           📋 Adoption Guide
+        </a>
+        <a href="https://petsmartcharities.org/sites/default/files/AME_QRG.pdf%20%281%29.pdf" 
+           class="link-item" 
+           style="background: #0056b3; color: white; border: none; text-align: center; border-left: none; margin: 0; flex: 1; font-size: 0.85rem; padding: 12px 5px;">
+           🗎 AME Reference
         </a>
     </div>
-
+	</div>
+    
     <div style="margin-bottom: 25px;">
         <strong style="color: #2d3436; font-size: 1.1rem;">1. PetSmart Loyalty (AME)</strong>
         <p style="font-size: 0.9rem; color: #666; margin: 5px 0 10px;">
@@ -260,16 +280,20 @@
     <div id="contact-menu" class="sub-menu">
         <h3>Who to Contact</h3>
         
-        <div class="contact-card">
-    		<strong>Medical Emergency</strong>
-    		<span>Lawanna Johnson</span><br>
-    		<a href="sms:+19195551234" style="color:var(--warning); font-weight:bold; text-decoration: none;">
-        💬 Text (919) 555-1234
-   		 </a>
+	<div class="contact-card" style="border-left-color: #d63031; background: #fff5f5;">
+    		<strong style="color: #d63031;"><i class="fa-solid fa-triangle-exclamation"></i> Medical Emergency</strong>
+    		<span style="font-weight: bold;">Lawanna Johnson</span><br>
+    
+    		<div style="margin-top: 10px;">
+        		<a href="sms:+19199068243" style="display: inline-block; background: #d63031; color: white; text-decoration: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; font-size: 0.9rem;">
+            		<i class="fa-solid fa-comment-sms"></i> TEXT (919) 906-8243
+        		</a>
+    		</div>
 	</div>
 
+
 	<div class="contact-card">
-            <strong>Foster Team Lead (Non-Emergency Medical)</strong>
+            <strong> Non-Emergency Medical, contact Team Leads</strong>
             <a href="https://drive.google.com/file/d/1p_Jtnil6YVi5Qofxr4OZQqkR58WA-Ubi/view?usp=sharing">Lookup Team Lead</a>
         </div>
 
@@ -315,11 +339,13 @@
     <!-- ADMIN MENU -->
     <div id="admin-menu" class="sub-menu">
         <h3>Admin Tasks</h3>
-        <a href="https://sheltermanager.com/login/purr" class="link-item">Animal Shelter Manager (ASM)</a>
-        <a href="https://givebutter.com/GiveNow-PurrPartners" class="link-item">Donations - Givebutter</a>
+       		 <a href="https://sheltermanager.com/login/purr" class="link-item">Animal Shelter Manager (ASM)</a>
+       		 <a href="https://givebutter.com/GiveNow-PurrPartners" class="link-item">Donations</a>
 		<a href="https://purr-partners.github.io/cat-kiosk/" class="link-item">Kiosk</a>
 		<a href="https://purr-partners.github.io/catview/" class="link-item">Adoptable Cats</a>
     </div>
+
+	
 
     <!-- RESOURCES MENU -->
     <div id="resource-menu" class="sub-menu">
