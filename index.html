@@ -351,9 +351,7 @@ function showSub(menuId, parentId = 'main-menu') {
 }
 
 function showMain() {
-    if (document.getElementById('medical-menu').style.display === 'block') {
-        showSub('foster-menu'); // Go back to Foster instead of Home
-    } else {
+     
         document.getElementById('main-menu').style.display = 'grid';
         document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
         document.getElementById('back-bar').style.display = 'none';
