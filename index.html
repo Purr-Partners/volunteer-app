@@ -351,7 +351,11 @@ function showSub(menuId, parentId = 'main-menu') {
 }
 
 function showMain() {
-     
+    // If they are on the Return Protocol screen, take them back to Fostering
+    if (document.getElementById('return-menu').style.display === 'block') {
+        showSub('foster-menu');
+    } else {
+        // Otherwise, reset completely back to the main menu grid
         document.getElementById('main-menu').style.display = 'grid';
         document.querySelectorAll('.sub-menu').forEach(m => m.style.display = 'none');
         document.getElementById('back-bar').style.display = 'none';
